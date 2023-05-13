@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import registerNNPushToken from 'native-notify';
+import React, { useState, useEffect } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import registerNNPushToken from 'native-notify'
 
-import Home from './src/screens/Home';
-import ChosenTask from './src/screens/ChosenTask';
+import Home from './src/screens/Home'
+import ChosenTask from './src/screens/ChosenTask'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   // push notifications
-  registerNNPushToken(your-app-id, 'your-app-token');
-    // get App ID and App Token from NativeNotify.com
+  registerNNPushToken(7862, 'HeoqaxWh6Du05Rw3pbVXbi')
+  // get App ID and App Token from NativeNotify.com
 
   // globalstate management
-  const [toDoList, setToDoList] = useState([{ id: 1, task: 'brush your teeth' }]);
-  const [task, setTask] = useState('');
-  const [chosenTask, setChosenTask] = useState('');
+  const [toDoList, setToDoList] = useState([{ id: 1, task: 'brush your teeth' }])
+  const [task, setTask] = useState('')
+  const [chosenTask, setChosenTask] = useState('')
 
   const GlobalState = {
     toDoList, setToDoList,
@@ -39,5 +39,5 @@ export default function App() {
 
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }

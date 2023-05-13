@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, FlatList, StatusBar } from 'react-native'
 
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../Components/Header'
+import Footer from '../Components/Footer'
 
 export default function Home({ navigation, GlobalState }) {
-    const { toDoList, setToDoList, task, setTask, setChosenTask } = GlobalState;
+    const { toDoList, setToDoList, task, setTask, setChosenTask } = GlobalState
 
     useEffect(() => {
         setToDoList(prevState => [...prevState, { id: 2, task: 'go to bed' }])
@@ -19,39 +19,43 @@ export default function Home({ navigation, GlobalState }) {
             >
                 <Text>{item.task}</Text>
             </TouchableOpacity>
-        ) 
+        )
     }
 
     const handleSaveTask = () => {
-        const index = toDoList.length + 1;
+        const index = toDoList.length + 1
 
-        setToDoList(prevState => [...prevState, { id: index, task: task }]);
+        setToDoList(prevState => [...prevState, { id: index, task: task }])
 
-        setTask('');
+        setTask('')
     }
 
     const handleChooseTask = (item) => {
-        setChosenTask(item);
-        navigation.navigate('ChosenTask');
+        setChosenTask(item)
+        navigation.navigate('ChosenTask')
     }
 
     return (
         <View style={styles.screen}>
+            <StatusBar
+                animated={true}
+                backgroundColor="black"
+            />
             <Header />
             <View style={styles.body}>
-                <TextInput 
+                <TextInput
                     style={styles.input}
                     onChangeText={setTask}
                     value={task}
                     placeholder="To do task..."
                 />
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.button}
                     onPress={() => handleSaveTask()}
                 >
                     <Text style={styles.buttonText} >Submit</Text>
                 </TouchableOpacity>
-                <FlatList 
+                <FlatList
                     data={toDoList}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
